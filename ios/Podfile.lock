@@ -1,0 +1,46 @@
+PODS:
+  - firexcode (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - image_editor_pro (0.0.1):
+    - Flutter
+  - image_picker (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
+    - Flutter
+
+DEPENDENCIES:
+  - firexcode (from `.symlinks/plugins/firexcode/ios`)
+  - Flutter (from `Flutter`)
+  - image_editor_pro (from `.symlinks/plugins/image_editor_pro/ios`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+
+EXTERNAL SOURCES:
+  firexcode:
+    :path: ".symlinks/plugins/firexcode/ios"
+  Flutter:
+    :path: Flutter
+  image_editor_pro:
+    :path: ".symlinks/plugins/image_editor_pro/ios"
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+
+SPEC CHECKSUMS:
+  firexcode: 2dad7a2185a735308cd4b6524e15287f00bdbec5
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  image_editor_pro: 42587bd3938bbd1719738687db0b9d5d788239bd
+  image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1

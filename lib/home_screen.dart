@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gradients/flutter_gradients.dart';
 import 'package:image_editor_pro/image_editor_pro.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:imago/screens/compress_image_screen.dart';
 import 'package:imago/screens/crop_rotate_screen.dart';
 import 'package:imago/screens/filters_image_screen.dart';
 import 'package:imago/utils/repeated_functions.dart';
@@ -67,24 +70,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context) => FiltersImageScreen())),
                 FlutterGradients.amourAmour()),
             buildCard(
-                Icons.remove,
-                "Remove Background",
-                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
-                () {},
-                FlutterGradients.smartIndigo()),
-            buildCard(
                 Icons.image,
                 "Generate Meme",
-                EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
+                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
                 () {},
                 FlutterGradients.newLife()),
             buildCard(
                 Icons.crop_rotate,
                 "Crop And Rotate",
-                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
+                EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
                 () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => CropRotateScreen())),
                 FlutterGradients.happyMemories()),
+            buildCard(
+                Icons.compress,
+                "Compress Image",
+                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
+                () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CompressImageScreen())),
+                FlutterGradients.smartIndigo()),
           ],
         ),
       ),

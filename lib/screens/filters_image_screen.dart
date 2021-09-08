@@ -58,6 +58,7 @@ class _FiltersImageScreenState extends State<FiltersImageScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: new AppBar(
+        elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: new Text(
@@ -97,6 +98,8 @@ class _FiltersImageScreenState extends State<FiltersImageScreen> {
         onPressed: () => getImage(context),
         tooltip: 'Pick Image',
         child: new Icon(Icons.add_a_photo),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
     );
   }

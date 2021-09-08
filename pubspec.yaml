@@ -25,6 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_gradients: ^1.0.0+3
+  flutter_image_compress: ^1.1.0
   image_cropper: ^1.4.1
   image_editor_pro: ^1.1.8
   image_gallery_saver: ^1.6.6

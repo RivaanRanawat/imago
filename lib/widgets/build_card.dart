@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gradients/flutter_gradients.dart';
 
-Widget buildCard(IconData icon, String text, EdgeInsets margin, Function onTap) {
+Widget buildCard(IconData icon, String text, EdgeInsets margin, Function onTap, Gradient gradient) {
   return GestureDetector(
     onTap: onTap,
       child: Card(
@@ -17,16 +18,16 @@ Widget buildCard(IconData icon, String text, EdgeInsets margin, Function onTap) 
                 child: Icon(
                   icon,
                   size: 40,
+                  color: Colors.white,
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50.0),
-                  color: Colors.transparent,
-                  border: Border.all(color: Colors.black),
+                  // color: Colors.transparent,
+                  gradient: gradient,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 20.0),
           Expanded(
               child: Container(
                   width: 175.0,

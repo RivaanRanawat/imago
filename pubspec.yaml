@@ -30,6 +30,7 @@ dependencies:
   image_gallery_saver: ^1.6.6
   image_picker: ^0.7.4
   permission_handler: ^7.0.0
+  photofilters: ^3.0.1
 
 dev_dependencies:
   flutter_test:

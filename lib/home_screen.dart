@@ -3,6 +3,7 @@ import 'package:flutter_gradients/flutter_gradients.dart';
 import 'package:image_editor_pro/image_editor_pro.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:imago/screens/crop_rotate_screen.dart';
+import 'package:imago/screens/filters_image_screen.dart';
 import 'package:imago/utils/repeated_functions.dart';
 import 'package:imago/widgets/build_card.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0.0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        title: Text("Imago - The Photo App", style: TextStyle(color: Colors.black)),
+        title: Text("Imago - The Photo App",
+            style: TextStyle(color: Colors.black)),
       ),
       body: Center(
         child: GridView.count(
@@ -59,10 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     }),
                 FlutterGradients.riverCity()),
             buildCard(
-                Icons.calendar_view_month,
-                "Create Collage",
+                Icons.filter_sharp,
+                "Photo Filters",
                 EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
-                () {},
+                () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FiltersImageScreen())),
                 FlutterGradients.amourAmour()),
             buildCard(
                 Icons.remove,

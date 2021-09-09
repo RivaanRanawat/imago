@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:imago/home_screen.dart';
 import 'package:imago/models/text_info.dart';
 import 'package:imago/utils/repeated_functions.dart';
 import 'package:imago/widgets/memeWidgets/default_button.dart';
@@ -20,6 +21,11 @@ abstract class EditMemeViewModel extends State<EditMeme> {
     if (texts.length > 0) {
       screenshotController.capture().then((Uint8List image) {
         saveImage(image);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Image Saved to Gallery"),
+        ));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => HomeScreen()));
       }).catchError((err) => print(err));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -39,7 +45,6 @@ abstract class EditMemeViewModel extends State<EditMeme> {
     final name = "screenshot_$time";
     await requestPermission(Permission.storage);
     final res = await ImageGallerySaver.saveImage(bytes, name: name);
-    return res["filePath"];
   }
 
   setCurrentIndex(BuildContext context, index) {
@@ -129,7 +134,7 @@ abstract class EditMemeViewModel extends State<EditMeme> {
     });
   }
 
-  addNewText() {
+  addNewText(BuildContext context) {
     setState(() {
       texts.add(TextInfo(
           color: Colors.black,
@@ -140,6 +145,7 @@ abstract class EditMemeViewModel extends State<EditMeme> {
           fontSize: 20,
           left: 0,
           top: 0));
+      Navigator.of(context).pop();
     });
   }
 
@@ -158,14 +164,17 @@ abstract class EditMemeViewModel extends State<EditMeme> {
               ),
               actions: <Widget>[
                 DefaultButton(
-                  onPressed: addNewText,
-                  child: Text('Add Text', style: TextStyle(color: Colors.black),),
-                  color: Colors.white,
-                  textColor: Colors.white,
-                ),
-                DefaultButton(
                   onPressed: () => Navigator.of(context).pop(),
                   child: Text('Back'),
+                  color: Colors.white,
+                  textColor: Colors.black,
+                ),
+                DefaultButton(
+                  onPressed: () => addNewText(context),
+                  child: Text(
+                    'Add Text',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   color: Colors.red,
                   textColor: Colors.white,
                 ),

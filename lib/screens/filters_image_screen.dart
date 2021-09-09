@@ -71,6 +71,9 @@ class _FiltersImageScreenState extends State<FiltersImageScreen> {
                   onPressed: () {
                     requestPermission(Permission.storage).then((value) {
                       ImageGallerySaver.saveFile(imageFile.path).then((value) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Image Saved to Gallery"),
+                        ));
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => HomeScreen()));
                       }).catchError((err) => print(err));

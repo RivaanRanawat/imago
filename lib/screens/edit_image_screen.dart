@@ -4,7 +4,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class EditImageScreen extends StatefulWidget {
-  const EditImageScreen({ Key key }) : super(key: key);
+  const EditImageScreen({Key key}) : super(key: key);
 
   @override
   _EditImageScreenState createState() => _EditImageScreenState();
@@ -23,6 +23,9 @@ class _EditImageScreenState extends State<EditImageScreen> {
         if (geteditimage != null) {
           _requestPermission(Permission.storage).then((value) {
             ImageGallerySaver.saveFile(geteditimage.path).then((value) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Image Saved to Gallery"),
+              ));
               print(value);
             }).catchError((err) => print(err));
           }).catchError((err) => print(err));

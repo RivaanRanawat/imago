@@ -53,6 +53,9 @@ class _CompressImageScreenState extends State<CompressImageScreen> {
               if (imageFile != null) {
                 requestPermission(Permission.storage).then((value) {
                   ImageGallerySaver.saveFile(newImage.path).then((value) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Image Saved to Gallery"),
+                    ));
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => HomeScreen()));
                   }).catchError((err) => print(err));

@@ -47,6 +47,9 @@ class _CropRotateScreenState extends State<CropRotateScreen> {
                   onPressed: () {
                     requestPermission(Permission.storage).then((value) {
                       ImageGallerySaver.saveFile(imageFile.path).then((value) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Image Saved to Gallery"),
+                        ));
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => HomeScreen()));
                       }).catchError((err) => print(err));

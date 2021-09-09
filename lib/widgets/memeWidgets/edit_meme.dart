@@ -216,10 +216,12 @@ class _EditMemeState extends EditMemeViewModel {
         onPressed: () => addNewDialog(context),
       );
 
-  Widget get _selectedMeme => Image.asset(
-        widget.selectedMeme,
-        fit: BoxFit.fill,
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-      );
+  Widget get _selectedMeme => Center(
+    child: Image.asset(
+          widget.selectedMeme,
+          fit: BoxFit.fill,
+          // height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+        ),
+  );
 }

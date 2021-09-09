@@ -7,6 +7,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:imago/screens/compress_image_screen.dart';
 import 'package:imago/screens/crop_rotate_screen.dart';
 import 'package:imago/screens/filters_image_screen.dart';
+import 'package:imago/screens/generateMeme/select_meme.dart';
 import 'package:imago/utils/repeated_functions.dart';
 import 'package:imago/widgets/build_card.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -73,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.image,
                 "Generate Meme",
                 EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
-                () {},
+                () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SelectMeme())),
                 FlutterGradients.newLife()),
             buildCard(
                 Icons.crop_rotate,

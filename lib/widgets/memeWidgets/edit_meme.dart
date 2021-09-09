@@ -39,11 +39,12 @@ class _EditMemeState extends EditMemeViewModel {
                         child: Draggable(
                           feedback: MemeText(textInfo: texts[i]),
                           child: MemeText(textInfo: texts[i]),
-                          onDraggableCanceled:
-                              (Velocity velocity, Offset offset) {
+                          onDragEnd: (drag) {
+                            RenderBox renderBox = context.findRenderObject();
+                            Offset off = renderBox.globalToLocal(drag.offset);
                             setState(() {
-                              texts[i].top = offset.dy - 50;
-                              texts[i].left = offset.dx;
+                              texts[i].top = off.dy-80;
+                              texts[i].left = off.dx;
                             });
                           },
                         ))),

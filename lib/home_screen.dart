@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gradients/flutter_gradients.dart';
 import 'package:image_editor_pro/image_editor_pro.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:imago/screens/camera_filters_screen.dart';
 import 'package:imago/screens/compress_image_screen.dart';
 import 'package:imago/screens/crop_rotate_screen.dart';
 import 'package:imago/screens/filters_image_screen.dart';
@@ -91,6 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => CompressImageScreen())),
                 FlutterGradients.smartIndigo()),
+            buildCard(
+                Icons.face,
+                "Face Filters",
+                EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
+                () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CameraFilterScreen())),
+                FlutterGradients.sugarLollipop()),
           ],
         ),
       ),

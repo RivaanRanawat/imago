@@ -70,6 +70,8 @@ class _SelectMemeState extends State<SelectMeme> {
       "assets/memes/meme-50.jpeg",
       "assets/memes/meme-51.jpg",
       "assets/memes/meme-52.jpg",
+      "assets/memes/meme-53.png",
+      "assets/memes/meme-54.jpg",
     ]),
   ];
 

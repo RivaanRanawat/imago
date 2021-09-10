@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.11.0 <3.0.0"
 
 dependencies:
+  avatar_view: ^1.0.1
+  camera_deep_ar: ^0.0.1
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -99,7 +101,16 @@ flutter:
     - assets/memes/meme-49.jpeg
     - assets/memes/meme-50.jpeg
     - assets/memes/meme-51.jpg
-    - assets/memes/meme-52.jpg
+    - assets/memes/meme-53.png
+    - assets/memes/meme-54.jpg
+    - assets/filters/0.jpg
+    - assets/filters/1.jpg
+    - assets/filters/2.jpg
+    - assets/filters/3.jpg
+    - assets/filters/4.jpg
+    - assets/filters/5.jpg
+    - assets/filters/6.jpg
+    - assets/filters/7.jpg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

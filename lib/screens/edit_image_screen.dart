@@ -3,6 +3,7 @@ import 'package:image_editor_pro/image_editor_pro.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:imago/models/photo.dart';
 import 'package:imago/utils/image_functions.dart';
+import 'package:imago/utils/repeated_functions.dart';
 import 'package:imago/utils/sqfl_db_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -32,7 +33,7 @@ class _EditImageScreenState extends State<EditImageScreen> {
         );
       })).then((geteditimage) {
         if (geteditimage != null) {
-          _requestPermission(Permission.storage).then((value) {
+          requestPermission(Permission.storage).then((value) {
             ImageGallerySaver.saveFile(geteditimage.path).then((value) {
               String imgString =
                   Utility.base64String(geteditimage.readAsBytesSync());
@@ -49,18 +50,6 @@ class _EditImageScreenState extends State<EditImageScreen> {
       }).catchError((er) {
         print(er);
       });
-
-  Future<bool> _requestPermission(Permission permission) async {
-    if (await permission.isGranted) {
-      return true;
-    } else {
-      var result = await permission.request();
-      if (result == PermissionStatus.granted) {
-        return true;
-      }
-    }
-    return false;
-  }
 
   @override
   Widget build(BuildContext context) {

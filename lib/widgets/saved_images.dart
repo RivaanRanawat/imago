@@ -14,7 +14,7 @@ class _SavedImagesState extends State<SavedImages> {
   Image image;
   DBHelper dbHelper;
   List<Photo> images;
- 
+
   @override
   void initState() {
     super.initState();
@@ -22,7 +22,7 @@ class _SavedImagesState extends State<SavedImages> {
     dbHelper = DBHelper();
     refreshImages();
   }
- 
+
   refreshImages() {
     dbHelper.getPhotos().then((imgs) {
       setState(() {
@@ -31,6 +31,7 @@ class _SavedImagesState extends State<SavedImages> {
       });
     });
   }
+
   gridView() {
     return Padding(
       padding: EdgeInsets.all(5.0),
@@ -48,14 +49,23 @@ class _SavedImagesState extends State<SavedImages> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            child: gridView(),
-          )
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: Text("Your Images",
+            style: TextStyle(color: Colors.black)),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Flexible(
+              child: gridView(),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -11,6 +11,7 @@ import 'package:imago/screens/filters_image_screen.dart';
 import 'package:imago/screens/generateMeme/select_meme.dart';
 import 'package:imago/utils/repeated_functions.dart';
 import 'package:imago/widgets/build_card.dart';
+import 'package:imago/widgets/saved_images.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,75 +32,102 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Imago - The Photo App",
             style: TextStyle(color: Colors.black)),
       ),
-      body: Center(
-        child: GridView.count(
-          crossAxisCount: 2,
-          primary: false,
-          crossAxisSpacing: 2.0,
-          mainAxisSpacing: 4.0,
-          shrinkWrap: true,
-          children: <Widget>[
-            buildCard(
-                Icons.camera_alt,
-                "Edit Image",
-                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
-                () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return ImageEditorPro(
-                        appBarColor: Colors.black,
-                        bottomBarColor: Colors.black,
-                        pathSave: null,
-                        pixelRatio: 10,
-                      );
-                    })).then((geteditimage) {
-                      if (geteditimage != null) {
-                        requestPermission(Permission.storage).then((value) {
-                          ImageGallerySaver.saveFile(geteditimage.path)
-                              .then((value) {
-                            print(value);
-                          }).catchError((err) => print(err));
-                        }).catchError((err) => print(err));
-                      }
-                    }).catchError((er) {
-                      print(er);
-                    }),
-                FlutterGradients.riverCity()),
-            buildCard(
-                Icons.filter_sharp,
-                "Photo Filters",
-                EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
-                () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => FiltersImageScreen())),
-                FlutterGradients.amourAmour()),
-            buildCard(
-                Icons.image,
-                "Generate Meme",
-                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
-                () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SelectMeme())),
-                FlutterGradients.newLife()),
-            buildCard(
-                Icons.crop_rotate,
-                "Crop And Rotate",
-                EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
-                () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CropRotateScreen())),
-                FlutterGradients.happyMemories()),
-            buildCard(
-                Icons.compress,
-                "Compress Image",
-                EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
-                () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CompressImageScreen())),
-                FlutterGradients.smartIndigo()),
-            buildCard(
-                Icons.face,
-                "Face Filters",
-                EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
-                () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CameraFilterScreen())),
-                FlutterGradients.sugarLollipop()),
-          ],
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GridView.count(
+                crossAxisCount: 2,
+                primary: false,
+                crossAxisSpacing: 2.0,
+                mainAxisSpacing: 4.0,
+                shrinkWrap: true,
+                children: <Widget>[
+                  buildCard(
+                      Icons.camera_alt,
+                      "Edit Image",
+                      EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
+                      () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ImageEditorPro(
+                              appBarColor: Colors.black,
+                              bottomBarColor: Colors.black,
+                              pathSave: null,
+                              pixelRatio: 10,
+                            );
+                          })).then((geteditimage) {
+                            if (geteditimage != null) {
+                              requestPermission(Permission.storage)
+                                  .then((value) {
+                                ImageGallerySaver.saveFile(geteditimage.path)
+                                    .then((value) {
+                                  print(value);
+                                }).catchError((err) => print(err));
+                              }).catchError((err) => print(err));
+                            }
+                          }).catchError((er) {
+                            print(er);
+                          }),
+                      FlutterGradients.riverCity()),
+                  buildCard(
+                      Icons.filter_sharp,
+                      "Photo Filters",
+                      EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
+                      () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FiltersImageScreen())),
+                      FlutterGradients.amourAmour()),
+                  buildCard(
+                      Icons.image,
+                      "Generate Meme",
+                      EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
+                      () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SelectMeme())),
+                      FlutterGradients.newLife()),
+                  buildCard(
+                      Icons.crop_rotate,
+                      "Crop And Rotate",
+                      EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
+                      () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CropRotateScreen())),
+                      FlutterGradients.happyMemories()),
+                  buildCard(
+                      Icons.compress,
+                      "Compress Image",
+                      EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 20.0),
+                      () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CompressImageScreen())),
+                      FlutterGradients.smartIndigo()),
+                  buildCard(
+                      Icons.face,
+                      "Face Filters",
+                      EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 20.0),
+                      () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CameraFilterScreen())),
+                      FlutterGradients.sugarLollipop()),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0, left: 20),
+                child: TextButton(
+                  child: Row(
+                    children: [
+                      Text(
+                        "View Saved Images",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.black),
+                      ),
+                      Icon(Icons.arrow_right, size: 30, color: Colors.black),
+                    ],
+                  ),
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SavedImages())),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

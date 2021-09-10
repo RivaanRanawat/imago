@@ -35,6 +35,8 @@ dependencies:
   permission_handler: ^7.0.0
   photofilters: ^3.0.1
   screenshot: ^0.3.0
+  shared_preferences: ^2.0.7
+  sqflite: ^2.0.0+4
 
 dev_dependencies:
   flutter_test:

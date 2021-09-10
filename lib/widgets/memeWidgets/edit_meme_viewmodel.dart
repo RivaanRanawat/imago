@@ -2,8 +2,11 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:imago/home_screen.dart';
+import 'package:imago/models/photo.dart';
 import 'package:imago/models/text_info.dart';
+import 'package:imago/utils/image_functions.dart';
 import 'package:imago/utils/repeated_functions.dart';
+import 'package:imago/utils/sqfl_db_helper.dart';
 import 'package:imago/widgets/memeWidgets/default_button.dart';
 import 'package:imago/widgets/memeWidgets/edit_meme.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -16,6 +19,13 @@ abstract class EditMemeViewModel extends State<EditMeme> {
 
   List<TextInfo> texts = [];
   int currentIndex = 0;
+  DBHelper dbHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    dbHelper = DBHelper();
+  }
 
   saveToGallery(BuildContext context) async {
     if (texts.length > 0) {
@@ -45,6 +55,9 @@ abstract class EditMemeViewModel extends State<EditMeme> {
     final name = "screenshot_$time";
     await requestPermission(Permission.storage);
     final res = await ImageGallerySaver.saveImage(bytes, name: name);
+    String imgString = Utility.base64String(bytes);
+    Photo photo = Photo(0, imgString);
+    await dbHelper.save(photo);
   }
 
   setCurrentIndex(BuildContext context, index) {

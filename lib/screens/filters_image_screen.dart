@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:imago/home_screen.dart';
+import 'package:imago/models/photo.dart';
+import 'package:imago/utils/image_functions.dart';
 import 'package:imago/utils/repeated_functions.dart';
+import 'package:imago/utils/sqfl_db_helper.dart';
 import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photofilters/photofilters.dart';
@@ -21,6 +24,13 @@ class _FiltersImageScreenState extends State<FiltersImageScreen> {
   List<Filter> filters = presetFiltersList;
   final picker = ImagePicker();
   File imageFile;
+  DBHelper dbHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    dbHelper = DBHelper();
+  }
 
   Future getImage(context) async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -71,11 +81,17 @@ class _FiltersImageScreenState extends State<FiltersImageScreen> {
                   onPressed: () {
                     requestPermission(Permission.storage).then((value) {
                       ImageGallerySaver.saveFile(imageFile.path).then((value) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Image Saved to Gallery"),
-                        ));
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => HomeScreen()));
+                        String imgString =
+                            Utility.base64String(imageFile.readAsBytesSync());
+                        Photo photo = Photo(0, imgString);
+                        dbHelper.save(photo).then((value) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Image Saved to Gallery"),
+                          ));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                        });
                       }).catchError((err) => print(err));
                     }).catchError((err) => print(err));
                   },

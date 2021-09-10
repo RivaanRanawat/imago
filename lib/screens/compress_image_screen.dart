@@ -5,7 +5,10 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:imago/home_screen.dart';
+import 'package:imago/models/photo.dart';
+import 'package:imago/utils/image_functions.dart';
 import 'package:imago/utils/repeated_functions.dart';
+import 'package:imago/utils/sqfl_db_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CompressImageScreen extends StatefulWidget {
@@ -19,6 +22,13 @@ class _CompressImageScreenState extends State<CompressImageScreen> {
   File imageFile;
   File newImage;
   double _value = 5;
+  DBHelper dbHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    dbHelper = DBHelper();
+  }
 
   Future<File> compressFile(File file, int value) async {
     final filePath = file.absolute.path;
@@ -53,11 +63,16 @@ class _CompressImageScreenState extends State<CompressImageScreen> {
               if (imageFile != null) {
                 requestPermission(Permission.storage).then((value) {
                   ImageGallerySaver.saveFile(newImage.path).then((value) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Image Saved to Gallery"),
-                    ));
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    String imgString =
+                        Utility.base64String(newImage.readAsBytesSync());
+                    Photo photo = Photo(0, imgString);
+                    dbHelper.save(photo).then((value) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Image Saved to Gallery"),
+                      ));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => HomeScreen()));
+                    });
                   }).catchError((err) => print(err));
                 }).catchError((err) => print(err));
               }

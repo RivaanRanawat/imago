@@ -5,7 +5,10 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:imago/home_screen.dart';
+import 'package:imago/models/photo.dart';
+import 'package:imago/utils/image_functions.dart';
 import 'package:imago/utils/repeated_functions.dart';
+import 'package:imago/utils/sqfl_db_helper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CropRotateScreen extends StatefulWidget {
@@ -22,11 +25,13 @@ enum AppState {
 class _CropRotateScreenState extends State<CropRotateScreen> {
   AppState state;
   File imageFile;
+  DBHelper dbHelper;
 
   @override
   void initState() {
     super.initState();
     state = AppState.free;
+    dbHelper = DBHelper();
   }
 
   @override
@@ -47,11 +52,17 @@ class _CropRotateScreenState extends State<CropRotateScreen> {
                   onPressed: () {
                     requestPermission(Permission.storage).then((value) {
                       ImageGallerySaver.saveFile(imageFile.path).then((value) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Image Saved to Gallery"),
-                        ));
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => HomeScreen()));
+                        String imgString =
+                            Utility.base64String(imageFile.readAsBytesSync());
+                        Photo photo = Photo(0, imgString);
+                        dbHelper.save(photo).then((value) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Image Saved to Gallery"),
+                          ));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()));
+                        });
                       }).catchError((err) => print(err));
                     }).catchError((err) => print(err));
                   },

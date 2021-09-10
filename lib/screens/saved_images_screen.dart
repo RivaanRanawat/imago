@@ -43,9 +43,13 @@ class _SavedImagesState extends State<SavedImages> {
         crossAxisSpacing: 4.0,
         children: images.map((photo) {
           return InkWell(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DisplaySavedImages(photo.photoName))),
-              child: Utility.imageFromBase64String(photo.photoName));
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DisplaySavedImages(photo.photoName))),
+            child: Hero(
+              tag: photo.photoName,
+              child: Utility.imageFromBase64String(photo.photoName),
+            ),
+          );
         }).toList(),
       ),
     );

@@ -43,7 +43,12 @@ class DisplaySavedImages extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(child: Utility.imageFromBase64String(image)),
+      body: Center(
+        child: Hero(
+          tag: image,
+          child: Utility.imageFromBase64String(image),
+        ),
+      ),
     );
   }
 }

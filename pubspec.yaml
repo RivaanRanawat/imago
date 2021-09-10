@@ -32,6 +32,7 @@ dependencies:
   image_editor_pro: ^1.1.8
   image_gallery_saver: ^1.6.6
   image_picker: ^0.7.4
+  page_transition: ^2.0.2
   permission_handler: ^7.0.0
   photofilters: ^3.0.1
   screenshot: ^0.3.0
@@ -103,6 +104,7 @@ flutter:
     - assets/memes/meme-49.jpeg
     - assets/memes/meme-50.jpeg
     - assets/memes/meme-51.jpg
+    - assets/memes/meme-52.jpg
     - assets/memes/meme-53.png
     - assets/memes/meme-54.jpg
     - assets/filters/0.jpg

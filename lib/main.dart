@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imago/home_screen.dart';
-import 'package:imago/widgets/saved_images.dart';
+import 'package:imago/screens/saved_images_screen.dart';
 
 void main() {
   runApp(MyApp());

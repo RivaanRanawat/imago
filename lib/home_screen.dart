@@ -11,7 +11,7 @@ import 'package:imago/screens/filters_image_screen.dart';
 import 'package:imago/screens/generateMeme/select_meme.dart';
 import 'package:imago/utils/repeated_functions.dart';
 import 'package:imago/widgets/build_card.dart';
-import 'package:imago/widgets/saved_images.dart';
+import 'package:imago/screens/saved_images_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends StatefulWidget {

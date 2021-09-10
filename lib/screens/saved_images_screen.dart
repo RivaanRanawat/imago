@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:imago/models/photo.dart';
 import 'package:imago/utils/image_functions.dart';
 import 'package:imago/utils/sqfl_db_helper.dart';
+import 'package:imago/widgets/display_saved_images.dart';
 
 class SavedImages extends StatefulWidget {
   const SavedImages({Key key}) : super(key: key);
@@ -32,7 +33,7 @@ class _SavedImagesState extends State<SavedImages> {
     });
   }
 
-  gridView() {
+  gridView(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: GridView.count(
@@ -41,7 +42,10 @@ class _SavedImagesState extends State<SavedImages> {
         mainAxisSpacing: 4.0,
         crossAxisSpacing: 4.0,
         children: images.map((photo) {
-          return Utility.imageFromBase64String(photo.photoName);
+          return InkWell(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DisplaySavedImages(photo.photoName))),
+              child: Utility.imageFromBase64String(photo.photoName));
         }).toList(),
       ),
     );
@@ -51,18 +55,18 @@ class _SavedImagesState extends State<SavedImages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0.0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        title: Text("Your Images",
-            style: TextStyle(color: Colors.black)),
+        title: Text("Your Images", style: TextStyle(color: Colors.black)),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Flexible(
-              child: gridView(),
+              child: gridView(context),
             )
           ],
         ),

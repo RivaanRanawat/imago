@@ -12,7 +12,7 @@ class _SelectMemeState extends State<SelectMeme> {
 
   askStoragePermission() async {
     if (await Permission.storage.request().isGranted) {
-      print('already greanted');
+      print('already granted');
     }
   }
 

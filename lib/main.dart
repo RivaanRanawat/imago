@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imago/home_screen.dart';
-import 'package:imago/screens/saved_images_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Imago',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
